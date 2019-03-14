@@ -1,0 +1,18 @@
+.THIS #table1  {
+    border: 1px solid black;
+    border-left: none;
+    width: 100%;
+}
+
+.THIS th{
+    border-left: solid 1px black;
+}
+
+.THIS td{
+    border-left: solid 1px black;
+}
+
+.accountLstCls.THIS {
+    margin-left:10px;
+    margin-top:50px;
+}

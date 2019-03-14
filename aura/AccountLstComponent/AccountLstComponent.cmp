@@ -1,0 +1,48 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="OppCreationCls">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="listOfAllAccounts" type="List"/>
+    <aura:attribute name="isSending" type="Boolean"/>
+    <aura:registerEvent name="accCmpEvt" type="c:AccountCmpEvt"/>
+    <!--SPINNER START-->
+    <aura:if isTrue="{!v.isSending}">
+        <div class="spinnerClass">
+        	<lightning:spinner alternativeText="Loading" size="large" variant="brand"/>
+    	</div>
+    </aura:if>
+    <!--SPINNER END-->
+    <div class="accountLstCls">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate slds-text-heading_small">
+         Select Accounts
+        </header>
+        <div class="ticketCmpCls__tbl" style="padding-top:20px;">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped" id="table1">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right slds-cell-wrap">
+                            <div class="slds-truncate" title="Selected">Selected</div>
+                        </th>
+                        <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right slds-cell-wrap">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.listOfAllAccounts}" var="accObj">
+                        <tr>
+                            <td scope="row" class="slds-truncate">
+                                <lightning:input type="checkbox" checked="{!accObj.isChecked}"/>
+                            </td>
+                            <td scope="row">
+                                <div class="slds-truncate" title="{!accObj.objAccount.Name}">{!accObj.objAccount.Name}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>        
+                </tbody>
+            </table>
+            <div class="slds-p-top_medium"> 
+            	<lightning:button variant="brand"  label="Create Opportunity" title="Create Opportunity" onclick="{!c.createOpp}" />
+            </div>
+            
+        </div>
+    </div>
+</aura:component>

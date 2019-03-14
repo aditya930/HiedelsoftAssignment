@@ -1,0 +1,58 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="OppCreationCls">
+    <aura:attribute name="newOpp" type="Opportunity" default="{ 'sobjectType': 'Opportunity',
+                                                                'Name': '',
+                                                                'Amount': '',
+                                                                'Amount_in_Euro__c': '',
+                                                                'CloseDate': '',
+                                                                'StageName': '' }"/>
+    <aura:attribute name="isSending" type="Boolean"/>
+    <aura:attribute name="stagePicklistValLst" type="Object"/>
+    <aura:handler name="accCmpEvt" event="c:AccountCmpEvt" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!--SPINNER START-->
+    <aura:if isTrue="{!v.isSending}">
+        <div class="spinnerClass">
+        	<lightning:spinner alternativeText="Loading" size="large" variant="brand"/>
+    	</div>
+    </aura:if>
+    <!--SPINNER END-->
+    <!--<lightning:card title="Create Opportunity"> -->
+    <div class="c-container slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate slds-text-heading_small">
+                Create Opportunities
+            </header>
+        </div>
+        <div class="itemContainer">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6" padding="around-small">
+                    <lightning:input type="number" name="AmountUSD" label="Amount in USD" 
+									 formatter="currency" value="{!v.newOpp.Amount}" onfocusout="{!c.calculateEuroAmt}" 
+									 required="true" aura:id="oppForm"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6"  padding="around-small">
+                    <!--<label style="color:#6b6d70">Amount in Euro</label> -->
+                    <lightning:input type="number" name="AmountEuro" label="Amount in Euro" 
+									 value="{!v.newOpp.Amount_in_Euro__c}" disabled="true" aura:id="oppForm"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6"  padding="around-small">
+                    <lightning:input type="date" name="Closedate" label="Close Date" 
+									 value="{!v.newOpp.CloseDate}" required="true" aura:id="oppForm"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6"  padding="around-small">
+                    <lightning:select value="{!v.newOpp.StageName}" label="Stage" required="true" aura:id="oppForm">
+                        <option value="">Choose one...</option>
+                    	<aura:iteration items="{!v.stagePicklistValLst}" var="item">
+                            <option value="{!item.value}">
+                            	{!item}
+                            </option>
+                        </aura:iteration>
+                    </lightning:select>
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+            <c:AccountLstComponent />
+        </div>
+    </div>
+        
+</aura:component>
