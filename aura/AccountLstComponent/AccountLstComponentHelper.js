@@ -1,10 +1,10 @@
 ({
-	toastThis : function(message, title) {
+	toastThis : function(message, title,type) {
 		var toastEvent = $A.get("e.force:showToast");
 		toastEvent.setParams({
 			"title": title || "Error:",
 			"message": message,
-			"type": "error",
+			"type": type,
 			"mode": "sticky"
 		});
 		toastEvent.fire();

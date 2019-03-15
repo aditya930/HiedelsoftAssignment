@@ -39,7 +39,7 @@
                     </aura:iteration>        
                 </tbody>
             </table>
-            <div class="slds-p-top_medium"> 
+            <div class="slds-p-top_medium slds-p-bottom_medium"> 
             	<lightning:button variant="brand"  label="Create Opportunity" title="Create Opportunity" onclick="{!c.createOpp}" />
             </div>
             

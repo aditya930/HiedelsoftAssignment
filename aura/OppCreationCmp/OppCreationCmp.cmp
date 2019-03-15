@@ -51,6 +51,7 @@
                 </lightning:layoutItem>
                 
             </lightning:layout>
+            <!-- Child Component to show Accounts -->
             <c:AccountLstComponent />
         </div>
     </div>

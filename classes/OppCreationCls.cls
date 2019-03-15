@@ -1,3 +1,15 @@
+/*********************************************************************************
+Class Name      : OppCreationCls 
+Description     : Class to handle populate currency population in Opportunity 
+                 
+Created By      : Aditya M
+Created Date    : 14-Mar-19   
+Modification Log:
+---------------------------------------------------------------------------------- ,
+Developer                   Date                   Description
+-----------------------------------------------------------------------------------            
+Aditya M            	 14-Mar-19                   Initial Version
+*********************************************************************************/
 public class OppCreationCls {
     @future(callout=true)
     public static void updateOppEURValue(Set<Id> lstNewOppIds){
@@ -26,7 +38,6 @@ public class OppCreationCls {
     
     @AuraEnabled
     public static String fetchEuroAmount(){
-        //system.debug('oppAmt:::' + oppAmt);
         String retText = '';
         String conversionRate;
         Http h = new Http();
@@ -44,7 +55,6 @@ public class OppCreationCls {
                 }
             }
             if(conversionRate!=NULL){
-                //retText = String.valueOf(oppAmt/conversionRate);
                 retText = conversionRate;
             }
         }

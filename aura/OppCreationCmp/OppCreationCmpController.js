@@ -11,7 +11,7 @@
         $A.enqueueAction(action);
     },
     
-    
+    //Function to insert Opportunities
     handleComponentEvent : function(component,event,helper) {
         var selectedAccounts = event.getParam("lstSelectedAccs"); 
 		var validOpp = component.find('oppForm').reduce(function (validSoFar, inputCmp) {
@@ -29,11 +29,16 @@
             action.setCallback(this,function(response){
                 var state = response.getState();
                 if(state==="SUCCESS"){
-                    component.set("v.isSending",false); 
-                    helper.toastThis("Opportunities Succesfully Created", "SUCCESS");
-                }
+                    component.set("v.isSending",false);
+                    if(response.getReturnValue() === "ERROR"){
+                        helper.toastThis("Server Error", "ERROR","error");
+                    }
+                    else{
+                        helper.toastThis("Opportunities Succesfully Created", "SUCCESS","success");
+                    }
+                 }
                 else if (state === "ERROR") {
-                    
+                    helper.toastThis("Server Error", "ERROR","error");
                 }
             });
             $A.enqueueAction(action);
@@ -41,15 +46,12 @@
         
     },
 
-    
+    //Function to Calculate EUR Amount based on the USD amount value using the Conversion rate
     calculateEuroAmt : function(component, event, helper) {
         var amountUSD = component.get("v.newOpp.Amount");
         if(amountUSD!=''){
            component.set("v.isSending",true); 
            var action = component.get("c.fetchEuroAmount");
-           /*action.setParams({
-               "oppAmt" : amountUSD
-           });*/
            action.setCallback(this,function(response){
             var state = response.getState();
             if(state==="SUCCESS"){

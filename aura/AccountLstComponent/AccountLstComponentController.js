@@ -9,6 +9,9 @@
                 component.set('v.listOfAllAccounts', AccountLstRes);
                 component.set("v.isSending",false);
             }
+            else if (state === "ERROR") {
+                helper.toastThis("Server Error", "ERROR","error");
+            }
         });
         $A.enqueueAction(action);
 	},
@@ -22,7 +25,7 @@
             }
         }
         if(lstSelectedAccounts == ''){
-        	helper.toastThis("Please select Accounts", "No Account  Selected");
+        	helper.toastThis("Please select Accounts", "No Account  Selected","error");
         }
         else{
            helper.createOpportunity(component,lstSelectedAccounts); 
