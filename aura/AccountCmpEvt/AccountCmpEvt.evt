@@ -1,3 +1,3 @@
-<aura:event type="COMPONENT" description="Event for searching tickets">
+<aura:event type="COMPONENT" description="Event to pass Selected Accounts">
     <aura:attribute name="lstSelectedAccs" type="List"/>
 </aura:event>
