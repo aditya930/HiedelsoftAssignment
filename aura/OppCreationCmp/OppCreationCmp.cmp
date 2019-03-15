@@ -16,7 +16,7 @@
     	</div>
     </aura:if>
     <!--SPINNER END-->
-    <!--<lightning:card title="Create Opportunity"> -->
+   
     <div class="c-container slds-card">
         <div class="slds-card__header slds-grid">
             <header class="slds-media slds-media_center slds-has-flexi-truncate slds-text-heading_small">

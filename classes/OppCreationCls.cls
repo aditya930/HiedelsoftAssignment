@@ -60,8 +60,6 @@ public class OppCreationCls {
         List<Opportunity> lstOppsToInsert = new List<Opportunity>();
         List<OppCreationCls.accountListWrapper> wrapper = new List<OppCreationCls.accountListWrapper>();
         wrapper = (List<OppCreationCls.accountListWrapper>)JSON.deserialize(accountJSON,List<OppCreationCls.accountListWrapper>.class);
-        system.debug('wrapper:::' + wrapper.size());
-        system.debug('wrapperObj:::' + wrapper);
         for(OppCreationCls.accountListWrapper wrapObj : wrapper){
             Opportunity opp = new Opportunity();
             opp.CloseDate = oppObj.CloseDate;
